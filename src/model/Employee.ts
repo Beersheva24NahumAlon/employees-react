@@ -1,5 +1,5 @@
 export default interface Employee {
-    id?: number;
+    id?: string;
     fullName: string;
     birthDate: string;
     avatar: string;
