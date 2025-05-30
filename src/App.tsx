@@ -1,10 +1,10 @@
 import './App.css'
-import EmployeeTable from './components/EmployeeTable'
+import EmployeesTable from './components/EmployeesTable'
 
 function App() {
 
   return (
-    <EmployeeTable/>
+    <EmployeesTable/>
   )
 }
 

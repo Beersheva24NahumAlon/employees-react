@@ -1,34 +1,37 @@
 import axios, { AxiosInstance } from "axios";
 import Employee from "../model/Employee";
 import ApiClient from "./ApiClient";
+import DataResponse from "../model/DataResponse";
 
 class ApiClientJsonServer implements ApiClient {
 
     client: AxiosInstance;
 
-    constructor( ) {
-        this.client = axios.create({baseURL:"http://localhost:3000"})
+    constructor() {
+        this.client = axios.create({ baseURL: "http://localhost:3000/employees/" })
     }
 
     addEmployee(empl: Employee): Promise<Employee> {
         throw new Error("Method not implemented.");
     }
-    updateEmployee(id: number, empl: Partial<Employee>): Promise<Employee> {
+    updateEmployee(id: string, empl: Partial<Employee>): Promise<Employee> {
         throw new Error("Method not implemented.");
     }
-    deleteEmployee(id: number): Promise<void> {
+    deleteEmployee(id: string): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    getEmployee(id: number): Promise<Employee | null> {
-        throw new Error("Method not implemented.");
+    async getEmployee(id: string): Promise<Employee | null> {
+        const response: DataResponse<Employee> = await this.client.get(id);
+        console.log(response.status);
+        return response.status < 400 ? response.data : null;
     }
     async getAll(config?: { headers?: any; params?: any; }): Promise<Employee[]> {
-        const responce = await this.client.get("employees", config);
-        return responce.data;
+        const response: DataResponse<Employee[]> = await this.client.get("", config);
+        return response.data;
     }
     async getBySalary(minSalary: number, maxSalary: number, config?: { headers?: any; params?: any; }): Promise<Employee[]> {
-        const newParams = {...config?.params, salary_gt: minSalary, salary_lt: maxSalary};
-        const newConfig = {...config, params: newParams};
+        const newParams = { ...config?.params, salary_gt: minSalary, salary_lt: maxSalary };
+        const newConfig = { ...config, params: newParams };
         const res = await this.getAll(newConfig);
         return res;
     }
@@ -38,7 +41,16 @@ class ApiClientJsonServer implements ApiClient {
             const age = calculateAge(empl.birthDate);
             return age >= minAge && age < maxAge;
         });
-    } 
+    }
+}
+
+function calculateBirthDate(age: number): string {
+    const nowDate = new Date();
+    const nowYear = nowDate.getFullYear();
+    const nowMonth = nowDate.getMonth();
+    const nowDay = nowDate.getDate();
+    const birthYear = nowYear - age;
+    return new Date(birthYear, nowMonth, nowDay).toISOString().split("T")[0];
 }
 
 function calculateAge(birthDateStr: string): number {
