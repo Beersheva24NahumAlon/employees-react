@@ -11,10 +11,10 @@ const Nav: React.FC = () => {
                 <Link to="/">Home page</Link>
             </Button>
             <Button variant="outline">
-                <Link to="/about">About us</Link>
+                <Link to="/search">Search</Link>
             </Button>
             <Button variant="outline">
-                <Link to="/contacts">Contacts</Link>
+                <Link to="/stat">Statictics</Link>
             </Button>
         </HStack>
     )

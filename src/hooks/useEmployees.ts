@@ -6,10 +6,7 @@ export default function useEmployees() {
 
     return useQuery<Employee[], Error>({
         queryKey: ["employees"],
-        //queryFn: () => apiClient.getAll(),
-        queryFn: () => apiClient.getByAge(30, 43),
-        //queryFn: () => apiClient.getBySalary(49000, 50000, config),
+        queryFn: () => apiClient.getAll(),
         staleTime: 5_000,
-        //refetchInterval: 5_000,
     });
 }

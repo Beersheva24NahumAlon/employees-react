@@ -1,10 +1,15 @@
 import React from 'react'
-import useEmployees from '../hooks/useEmployees';
 import { Spinner, Table, Text, Avatar } from '@chakra-ui/react';
+import Employee from '../model/Employee';
+import { UseQueryResult } from '@tanstack/react-query';
 
-const EmployeesTable: React.FC = () => {
+interface Props {
+    employeesHook: () => UseQueryResult<Employee[], Error>;
+}
 
-    const { data: employees, error, isLoading } = useEmployees();
+const EmployeesTable: React.FC<Props> = ({employeesHook}) => {
+
+    const { data: employees, error, isLoading } = employeesHook();
 
     return (
         isLoading ?
