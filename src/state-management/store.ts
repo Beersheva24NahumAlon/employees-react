@@ -21,3 +21,17 @@ export const useSearch = create<SearchStore>(set => ({
     setSalaryRange: (minSalary, maxSalary) => set((prevState) => ({ ...prevState, minSalary, maxSalary })),
     setAgeRange: (minAge, maxAge) => set((prevState) => ({ ...prevState, minAge, maxAge })),
 }));
+
+interface EmployeesQueryStore {
+    ageRange: { minAge: number, maxAge: number } | null
+    salaryRange: { minSalay: number, maxSalary: number } | null
+    setSalaryRange: (salaryRange: { minSalay: number, maxSalary: number } | null) => void;
+    setAgeRange: (ageRange: { minAge: number, maxAge: number } | null) => void;
+}
+
+export const useEmployeesQuery = create<EmployeesQueryStore>(set => ({
+    ageRange: null,
+    salaryRange: null,
+    setSalaryRange: (salaryRange) => set(() => ({ ageRange: null, salaryRange })),
+    setAgeRange: (ageRange) => set(() => ({ salaryRange: null, ageRange })),
+}));
