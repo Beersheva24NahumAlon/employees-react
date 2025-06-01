@@ -19,7 +19,19 @@ export const useEmployeesQuery = create<EmployeesQueryStore>(set => ({
         rangeAge: { min: filterTypes.Age.min, max: filterTypes.Age.max }, 
         rangeSalary: { min: filterTypes.Salary.min, max: filterTypes.Salary.max }
     },
-    setFilterType: (filterType) => set((prevState) => ({searchQuery: {...prevState.searchQuery, filterType}})),
-    setRangeAge: (rangeAge) => set((prevState) => ({searchQuery: {...prevState.searchQuery, rangeAge}})),
-    setRangeSalary: (rangeSalary) => set((prevState) => ({searchQuery: {...prevState.searchQuery, rangeSalary}})),
+    setFilterType: (filterType) => set((prevState) => ({
+        searchQuery: prevState.searchQuery.filterType != filterType 
+            ? {...prevState.searchQuery, filterType} 
+                : prevState.searchQuery
+    })),
+    setRangeAge: (rangeAge) => set((prevState) => ({
+        searchQuery: prevState.searchQuery.rangeAge.min != rangeAge.min || prevState.searchQuery.rangeAge.max != rangeAge.max
+            ? {...prevState.searchQuery, rangeAge}
+                : prevState.searchQuery
+    })),
+    setRangeSalary: (rangeSalary) => set((prevState) => ({
+        searchQuery: prevState.searchQuery.rangeSalary.min != rangeSalary.min || prevState.searchQuery.rangeSalary.max != rangeSalary.max
+            ? {...prevState.searchQuery, rangeSalary}
+                : prevState.searchQuery
+    })),
 }));

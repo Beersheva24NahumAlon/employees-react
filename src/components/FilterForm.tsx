@@ -66,6 +66,7 @@ const FilterForm: React.FC = () => {
                     minStepsBetweenThumbs={1}
                     min={filterTypes.Salary.min}
                     max={filterTypes.Salary.max}
+                    step={100}
                 >
                     <HStack justify="space-between">
                         <Slider.Label>Salary</Slider.Label>
