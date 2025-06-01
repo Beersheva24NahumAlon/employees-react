@@ -1,37 +1,25 @@
 import { create } from "zustand";
+import filterTypes from "../../config/filter-types.json";
 
-const MIN_AGE = 18;
-const MAX_AGE = 80;
-const MIN_SALARY = 5000;
-const MAX_SALARY = 50000;
-
-interface SearchStore {
-    minAge: number;
-    maxAge: number;
-    minSalary: number;
-    maxSalary: number;
-    setSalaryRange: (minSalary: number, maxSalary: number) => void;
-    setAgeRange: (minAge: number, maxAge: number) => void;
+interface SearchQuery {
+    filterType: "Age" | "Salary" | null;
+    rangeAge: { min: number, max: number };
+    rangeSalary: { min: number, max: number };
 }
-export const useSearch = create<SearchStore>(set => ({
-    minAge: MIN_AGE,
-    maxAge: MAX_AGE,
-    minSalary: MIN_SALARY,
-    maxSalary: MAX_SALARY,
-    setSalaryRange: (minSalary, maxSalary) => set((prevState) => ({ ...prevState, minSalary, maxSalary })),
-    setAgeRange: (minAge, maxAge) => set((prevState) => ({ ...prevState, minAge, maxAge })),
-}));
 
 interface EmployeesQueryStore {
-    ageRange: { minAge: number, maxAge: number } | null
-    salaryRange: { minSalay: number, maxSalary: number } | null
-    setSalaryRange: (salaryRange: { minSalay: number, maxSalary: number } | null) => void;
-    setAgeRange: (ageRange: { minAge: number, maxAge: number } | null) => void;
+    searchQuery: SearchQuery;
+    setFilterType: (filterType: "Age" | "Salary" | null) => void;
+    setRangeAge: (range: { min: number, max: number }) => void;
+    setRangeSalary: (range: { min: number, max: number }) => void;
 }
 
 export const useEmployeesQuery = create<EmployeesQueryStore>(set => ({
-    ageRange: null,
-    salaryRange: null,
-    setSalaryRange: (salaryRange) => set(() => ({ ageRange: null, salaryRange })),
-    setAgeRange: (ageRange) => set(() => ({ salaryRange: null, ageRange })),
+    searchQuery: {filterType: null, 
+        rangeAge: { min: filterTypes.Age.min, max: filterTypes.Age.max }, 
+        rangeSalary: { min: filterTypes.Salary.min, max: filterTypes.Salary.max }
+    },
+    setFilterType: (filterType) => set((prevState) => ({searchQuery: {...prevState.searchQuery, filterType}})),
+    setRangeAge: (rangeAge) => set((prevState) => ({searchQuery: {...prevState.searchQuery, rangeAge}})),
+    setRangeSalary: (rangeSalary) => set((prevState) => ({searchQuery: {...prevState.searchQuery, rangeSalary}})),
 }));

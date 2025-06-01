@@ -2,12 +2,16 @@ import { Button, HStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
+import { useEmployeesQuery } from '../state-management/store'
 
 const Nav: React.FC = () => {
+
+    const setFilterType = useEmployeesQuery(s => s.setFilterType);
+
     return (
         <HStack marginTop="2" justifyContent="left">
-            <ColorModeButton/>
-            <Button variant="outline" asChild>
+            <ColorModeButton />
+            <Button variant="outline" asChild onClick={() => setFilterType(null)}>
                 <Link to="/">Home page</Link>
             </Button>
             <Button variant="outline">

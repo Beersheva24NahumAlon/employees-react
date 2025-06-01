@@ -5,21 +5,22 @@ import { useEmployeesQuery } from "../state-management/store";
 
 export default function useEmployees() {
 
-    const ageRange = useEmployeesQuery(s => s.ageRange);
-    const salaryRange = useEmployeesQuery(s => s.salaryRange);
+    const filterType = useEmployeesQuery(s => s.searchQuery.filterType);
+    const rangeAge = useEmployeesQuery(s => s.searchQuery.rangeAge);
+    const rangeSalary = useEmployeesQuery(s => s.searchQuery.rangeSalary);
 
     function getQueryFn() {
         let res = () => apiClient.getAll();
-        if (ageRange != null && salaryRange == null) {
-            res = () => apiClient.getByAge(ageRange.minAge, ageRange.maxAge);
-        } else if (ageRange == null && salaryRange != null) {
-            res = () => apiClient.getBySalary(salaryRange.minSalay, salaryRange.maxSalary);
+        if (filterType == "Age") {
+            res = () => apiClient.getByAge(rangeAge.min, rangeAge.max);
+        } else if (filterType == "Salary") {
+            res = () => apiClient.getBySalary(rangeSalary.min, rangeSalary.max);
         }
         return res;
     }
 
     return useQuery<Employee[], Error>({
-        queryKey: ["employees", ageRange, salaryRange],
+        queryKey: ["employees", filterType, rangeAge, rangeSalary],
         queryFn: getQueryFn(),
         staleTime: 5_000,
     });
