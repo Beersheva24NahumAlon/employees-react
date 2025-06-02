@@ -1,4 +1,3 @@
-import apiClient from "../services/ApiClientJsonServer";
 
 export interface Statistic {
     range: string ; 

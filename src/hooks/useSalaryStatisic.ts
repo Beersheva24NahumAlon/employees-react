@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import apiClient, { calculateAge } from "../services/ApiClientJsonServer";
+import apiClient from "../services/ApiClientJsonServer";
 import Employee from "../model/Employee";
 import { compareRanges, Statistic } from "../common/statistics";
 

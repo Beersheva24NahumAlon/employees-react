@@ -1,14 +1,17 @@
 import React from 'react'
-import useAgeStatisic from '../../hooks/useAgeStatisic';
-import useSalaryStatisic from '../../hooks/useSalaryStatisic';
+import StatisticAgeTable from '../StatisticAgeTable'
+import { HStack } from '@chakra-ui/react'
+import StatisticSalaryTable from '../StatisticSalaryTable'
 
 const StatisticsPage: React.FC = () => {
 
-    const { data, error, isLoading } = useAgeStatisic();
-    console.log(data);
     return (
-        
-        <div>StatisticsPage</div>
+        <>
+            <HStack justifyContent="center" alignItems="baseline" gap="10rem">
+                <StatisticAgeTable />
+                <StatisticSalaryTable />
+            </HStack>
+        </>
     )
 }
 
