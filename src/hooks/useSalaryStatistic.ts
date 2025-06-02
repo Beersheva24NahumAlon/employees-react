@@ -1,12 +1,11 @@
-import { calculateAge } from "../services/ApiClientJsonServer";
 import Employee from "../model/Employee";
 import { compareRanges } from "../common/statistics";
 
-const step = 10;
+const step = 5000;
 
-export default function useAgeStatisic(employees: Employee[]) {
-    const statObj = employees.reduce((acc: Record<string, number>, current: Employee) => {
-        const lower = Math.floor(calculateAge(current.birthDate) / step) * step;
+export default function useSalaryStatistic(employees: Employee[]) {
+        const statObj = employees.reduce((acc: Record<string, number>, current: Employee) => {
+        const lower = Math.floor(current.salary / step) * step;
         const upper = lower + step - 1;
         const rangeKey = `${lower}-${upper}`;
 

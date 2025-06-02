@@ -1,38 +1,37 @@
-import { Heading, Spinner, Table, Text, VStack } from '@chakra-ui/react'
+import { Heading, Table, VStack } from '@chakra-ui/react'
 import React from 'react'
-import useSalaryStatisic from '../hooks/useSalaryStatisic';
+import useSalaryStatisic from '../hooks/useSalaryStatistic';
+import Employee from '../model/Employee';
 
-const StatisticSalaryTable: React.FC = () => {
+interface Props {
+    employees: Employee[];
+}
 
-    const { data: salaryStatistics, error, isLoading } = useSalaryStatisic();
+const StatisticSalaryTable: React.FC<Props> = ({ employees }) => {
+
+    const salaryStatistics = useSalaryStatisic(employees);
 
     return (
-        isLoading ?
-            (<Spinner />) :
-            (<>{
-                error?.message ?
-                    <Text color="red">{error.message}</Text>
-                    :
-                    <VStack>
-                        <Heading size="xl">Statistics by employee salary</Heading>
-                        <Table.Root>
-                            <Table.Header>
-                                <Table.Row>
-                                    <Table.ColumnHeader>Range of salary</Table.ColumnHeader>
-                                    <Table.ColumnHeader>Count of employees</Table.ColumnHeader>
-                                </Table.Row>
-                            </Table.Header>
-                            <Table.Body>
-                                {salaryStatistics?.map(s => (
-                                    <Table.Row key={s.range}>
-                                        <Table.Cell>{s.range}</Table.Cell>
-                                        <Table.Cell>{s.count}</Table.Cell>
-                                    </Table.Row>
-                                ))}
-                            </Table.Body>
-                        </Table.Root>
-                    </VStack>
-            }</>)
+
+        <VStack>
+            <Heading size="xl">Statistics by employee salary</Heading>
+            <Table.Root>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.ColumnHeader>Range of salary</Table.ColumnHeader>
+                        <Table.ColumnHeader>Count of employees</Table.ColumnHeader>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {salaryStatistics?.map(s => (
+                        <Table.Row key={s.range}>
+                            <Table.Cell>{s.range}</Table.Cell>
+                            <Table.Cell>{s.count}</Table.Cell>
+                        </Table.Row>
+                    ))}
+                </Table.Body>
+            </Table.Root>
+        </VStack>
 
     )
 }

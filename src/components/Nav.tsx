@@ -11,13 +11,13 @@ const Nav: React.FC = () => {
     return (
         <HStack marginTop="2" justifyContent="left">
             <ColorModeButton />
-            <Button variant="outline" asChild onClick={() => setFilterType(null)}>
+            <Button variant="outline" onClick={() => setFilterType(null)}>
                 <Link to="/">Home page</Link>
             </Button>
             <Button variant="outline">
                 <Link to="/search">Search</Link>
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => setFilterType(null)}>
                 <Link to="/stat">Statictics</Link>
             </Button>
         </HStack>

@@ -1,9 +1,3 @@
-
-export interface Statistic {
-    range: string ; 
-    count: number;
-}
-
 export function compareRanges(a: string, b: string): number {
     let res = 0;
     const lowerA = a.split("-")[0];
