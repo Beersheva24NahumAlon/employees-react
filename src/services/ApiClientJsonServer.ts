@@ -53,7 +53,7 @@ function calculateBirthDate(age: number): string {
     return new Date(birthYear, nowMonth, nowDay).toISOString().split("T")[0];
 }
 
-function calculateAge(birthDateStr: string): number {
+export function calculateAge(birthDateStr: string): number {
     const birthDate = new Date(birthDateStr);
     const now = new Date();
     const birthDay = birthDate.getDay();
