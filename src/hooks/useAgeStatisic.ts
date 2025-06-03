@@ -1,6 +1,5 @@
 import { calculateAge } from "../services/ApiClientJsonServer";
 import Employee from "../model/Employee";
-import { compareRanges } from "../common/statistics";
 
 const step = 10;
 
@@ -13,5 +12,6 @@ export default function useAgeStatisic(employees: Employee[]) {
         acc[rangeKey] = (acc[rangeKey] || 0) + 1;
         return acc;
     }, {});
-    return Object.entries(statObj).map(([range, count]) => ({ range, count })).sort((a, b) => compareRanges(a.range, b.range));
+    return Object.entries(statObj).map(([range, count]) => ({ range, count }))
+            .sort((a, b) => +a.range.split("-")[0] - +b.range.split("-")[0]);
 }
