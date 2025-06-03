@@ -5,7 +5,7 @@ import apiClient from '../../services/ApiClientJsonServer'
 import Employee from '../../model/Employee'
 
 const AddEmployeePage: React.FC = () => {
-    const mutation = useEmployeesMutation((empl) => apiClient.addEmployee(empl as Employee))
+    const mutation = useEmployeesMutation(empl => apiClient.addEmployee(empl as Employee))
     return (
         <EmployeeForm submitter={empl => mutation.mutate(empl)} />
     )
