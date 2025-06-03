@@ -1,7 +1,7 @@
 import React, { FormEvent, useRef } from 'react'
 import { useEmployeesQuery } from '../state-management/store';
 import { Box, Button, HStack, Slider } from '@chakra-ui/react';
-import filterTypes from "../../config/filter-types.json";
+import ranges from "../../config/ranges.json";
 
 const FilterSalaryForm: React.FC = () => {
 
@@ -26,8 +26,8 @@ const FilterSalaryForm: React.FC = () => {
                 <Slider.Root
                     defaultValue={[range.min, range.max]}
                     minStepsBetweenThumbs={100}
-                    min={filterTypes.Salary.min}
-                    max={filterTypes.Salary.max}
+                    min={ranges.Salary.min}
+                    max={ranges.Salary.max}
                     step={100}
                     width="70vh"
                 >

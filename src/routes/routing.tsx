@@ -3,6 +3,7 @@ import Layout from "../components/pages/Layout";
 import HomePage from "../components/pages/HomePage";
 import SearchPage from "../components/pages/SearchPage";
 import StatisticsPage from "../components/pages/StatisticsPage";
+import AddEmployeePage from "../components/pages/AddEmployeePage";
 
 const router = createBrowserRouter([
     {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
             { path: "", element: <HomePage /> },
             { path: "search", element: <SearchPage /> },
             { path: "stat", element: <StatisticsPage /> },
+            { path: "add", element: <AddEmployeePage /> },
         ]
     },
 

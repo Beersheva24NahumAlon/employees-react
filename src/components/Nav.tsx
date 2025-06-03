@@ -14,12 +14,16 @@ const Nav: React.FC = () => {
             <Button variant="outline" onClick={() => setFilterType(null)}>
                 <Link to="/">Home page</Link>
             </Button>
+            <Button variant="outline" >
+                <Link to="/add">Add employee</Link>
+            </Button>
             <Button variant="outline">
                 <Link to="/search">Search</Link>
             </Button>
             <Button variant="outline" onClick={() => setFilterType(null)}>
                 <Link to="/stat">Statictics</Link>
             </Button>
+
         </HStack>
     )
 }

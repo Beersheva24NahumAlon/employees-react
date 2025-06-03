@@ -10,7 +10,7 @@ const StatisticSalaryChart: React.FC = () => {
     const salaryStatistics = useSalaryStatistic(employees);
 
     return (
-        <PieChart width={300} height={300}>
+        <PieChart width={250} height={250}>
             <Pie
                 dataKey="count"
                 nameKey="range"

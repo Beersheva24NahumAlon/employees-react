@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import filterTypes from "../../config/filter-types.json";
+import ranges from "../../config/ranges.json";
 import Employee from "../model/Employee";
 
 interface SearchQuery {
@@ -17,8 +17,8 @@ interface EmployeesQueryStore {
 
 export const useEmployeesQuery = create<EmployeesQueryStore>(set => ({
     searchQuery: {filterType: null, 
-        rangeAge: { min: filterTypes.Age.min, max: filterTypes.Age.max }, 
-        rangeSalary: { min: filterTypes.Salary.min, max: filterTypes.Salary.max }
+        rangeAge: { min: ranges.Age.min, max: ranges.Age.max }, 
+        rangeSalary: { min: ranges.Salary.min, max: ranges.Salary.max }
     },
     setFilterType: (filterType) => set((prevState) => ({
         searchQuery: prevState.searchQuery.filterType != filterType 

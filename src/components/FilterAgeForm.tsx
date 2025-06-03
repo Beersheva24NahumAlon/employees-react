@@ -1,7 +1,7 @@
 import { Box, Button, HStack, Slider } from '@chakra-ui/react';
 import React, { FormEvent, useRef } from 'react'
 import { useEmployeesQuery } from '../state-management/store';
-import filterTypes from "../../config/filter-types.json";
+import ranges from "../../config/ranges.json";
 
 const FilterAgeForm: React.FC = () => {
 
@@ -27,8 +27,8 @@ const FilterAgeForm: React.FC = () => {
                     width="70vh"
                     defaultValue={[range.min, range.max]}
                     minStepsBetweenThumbs={1}
-                    min={filterTypes.Age.min}
-                    max={filterTypes.Age.max}
+                    min={ranges.Age.min}
+                    max={ranges.Age.max}
                 >
                     <HStack justify="space-between">
                         <Slider.Label>Age</Slider.Label>
