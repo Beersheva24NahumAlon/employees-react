@@ -22,6 +22,6 @@ export default function useEmployees() {
     return useQuery<Employee[], Error>({
         queryKey: ["employees", filterType, rangeAge, rangeSalary],
         queryFn: getQueryFn(),
-        staleTime: 5_000,
+        staleTime: 10_000,
     });
 }

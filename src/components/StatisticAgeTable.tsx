@@ -1,14 +1,12 @@
 import { Heading, Table, VStack } from '@chakra-ui/react'
 import React from 'react'
 import useAgeStatisic from '../hooks/useAgeStatisic';
-import Employee from '../model/Employee';
+import { useEmployeesGlobal } from '../state-management/store';
 
-interface Props {
-    employees: Employee[];
-}
 
-const StatisticAgeTable: React.FC<Props> = ({ employees }) => {
-
+const StatisticAgeTable: React.FC = () => {
+    
+    const employees = useEmployeesGlobal(s => s.employees);
     const ageStatistics = useAgeStatisic(employees);
 
     return (

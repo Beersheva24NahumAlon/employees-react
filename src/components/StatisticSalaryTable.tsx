@@ -1,14 +1,11 @@
 import { Heading, Table, VStack } from '@chakra-ui/react'
 import React from 'react'
 import useSalaryStatisic from '../hooks/useSalaryStatistic';
-import Employee from '../model/Employee';
+import { useEmployeesGlobal } from '../state-management/store';
 
-interface Props {
-    employees: Employee[];
-}
+const StatisticSalaryTable: React.FC = () => {
 
-const StatisticSalaryTable: React.FC<Props> = ({ employees }) => {
-
+    const employees = useEmployeesGlobal(s => s.employees);
     const salaryStatistics = useSalaryStatisic(employees);
 
     return (

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import filterTypes from "../../config/filter-types.json";
+import Employee from "../model/Employee";
 
 interface SearchQuery {
     filterType: "Age" | "Salary" | null;
@@ -34,4 +35,14 @@ export const useEmployeesQuery = create<EmployeesQueryStore>(set => ({
             ? {...prevState.searchQuery, rangeSalary}
                 : prevState.searchQuery
     })),
+}));
+
+interface EmployeesStore {
+    employees: Employee[];
+    setEmployees: (employees: Employee[]) => void;
+}
+
+export const useEmployeesGlobal = create<EmployeesStore>(set => ({
+    employees: [],
+    setEmployees: (employees) => set(() => ({employees}))
 }));
