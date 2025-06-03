@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import { Spinner, Table, Text, Avatar, Button, Box } from '@chakra-ui/react';
 import useEmployees from '../hooks/useEmployees';
+import useEmployeesMutation from '../hooks/useEmployeesMutation';
+import apiClient from '../services/ApiClientJsonServer';
 
-interface Props {
-    submitter: (id: string) => void
-}
 
-const EmployeesTable: React.FC<Props> = ({ submitter }) => {
+
+const EmployeesTable: React.FC = () => {
 
     const { data: employees, error, isLoading } = useEmployees();
+    const mutation = useEmployeesMutation(id => apiClient.deleteEmployee(id as string))
     const [id, setId] = useState("");
+
     return (
         isLoading ?
             (<Spinner />) :
@@ -17,7 +19,7 @@ const EmployeesTable: React.FC<Props> = ({ submitter }) => {
                 error?.message ?
                     <Text color="red">{error.message}</Text>
                     :
-                    <Box as="form" onSubmit={(event) => { event.preventDefault(); submitter(id); }}>
+                    <Box as="form" onSubmit={(event) => { event.preventDefault(); mutation.mutate(id); }}>
                         <Table.Root size="sm">
                             <Table.Header>
                                 <Table.Row>
