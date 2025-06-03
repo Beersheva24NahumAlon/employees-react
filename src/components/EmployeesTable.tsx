@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
-import { Spinner, Table, Text, Avatar, Button, Box } from '@chakra-ui/react';
+import React from 'react'
+import { Spinner, Table, Text, Avatar, Button } from '@chakra-ui/react';
 import useEmployees from '../hooks/useEmployees';
 import useEmployeesMutation from '../hooks/useEmployeesMutation';
 import apiClient from '../services/ApiClientJsonServer';
+import { QueryFunction } from '@tanstack/react-query';
+import Employee from '../model/Employee';
 
+interface Props {
+    queryFn: QueryFunction<Employee[]>
+}
 
+const EmployeesTable: React.FC<Props> = ({queryFn}) => {
 
-const EmployeesTable: React.FC = () => {
-
-    const { data: employees, error, isLoading } = useEmployees();
+    const { data: employees, error, isLoading } = useEmployees(queryFn);
     const mutation = useEmployeesMutation(id => apiClient.deleteEmployee(id as string))
 
     return (

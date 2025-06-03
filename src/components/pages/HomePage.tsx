@@ -1,9 +1,10 @@
 import React from 'react'
 import EmployeesTable from '../EmployeesTable'
+import apiClient from '../../services/ApiClientJsonServer'
 
 const HomePage: React.FC = () => {
     return (
-        <EmployeesTable />
+        <EmployeesTable queryFn={() => apiClient.getAll()}/>
     )
 }
 

@@ -1,27 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { QueryFunction, useQuery } from "@tanstack/react-query";
 import Employee from "../model/Employee";
-import apiClient from "../services/ApiClientJsonServer";
 import { useEmployeesQuery } from "../state-management/store";
 
-export default function useEmployees() {
+export default function useEmployees(queryFn: QueryFunction<Employee[]>) {
 
-    const filterType = useEmployeesQuery(s => s.searchQuery.filterType);
-    const rangeAge = useEmployeesQuery(s => s.searchQuery.rangeAge);
-    const rangeSalary = useEmployeesQuery(s => s.searchQuery.rangeSalary);
-
-    function getQueryFn() {
-        let res = () => apiClient.getAll();
-        if (filterType == "Age") {
-            res = () => apiClient.getByAge(rangeAge.min, rangeAge.max);
-        } else if (filterType == "Salary") {
-            res = () => apiClient.getBySalary(rangeSalary.min, rangeSalary.max);
-        }
-        return res;
-    }
+    const searchQuery = useEmployeesQuery(s => s.searchQuery);
 
     return useQuery<Employee[], Error>({
-        queryKey: ["employees", filterType, rangeAge, rangeSalary],
-        queryFn: getQueryFn(),
+        queryKey: ["employees", searchQuery],
+        queryFn,
         staleTime: 3600_000,
     });
 }

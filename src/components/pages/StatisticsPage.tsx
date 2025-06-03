@@ -6,11 +6,12 @@ import useEmployees from '../../hooks/useEmployees'
 import StatisticAgeChart from '../StatisticAgeChart'
 import { useEmployeesGlobal } from '../../state-management/store'
 import StatisticSalaryChart from '../StatisticSalaryChart'
+import apiClient from '../../services/ApiClientJsonServer'
 
 
 const StatisticsPage: React.FC = () => {
 
-    const { data: employees, error, isLoading } = useEmployees();
+    const { data: employees, error, isLoading } = useEmployees(() => apiClient.getAll());
     const setEmployees = useEmployeesGlobal(s => s.setEmployees);
     setEmployees(employees || []);
     return (

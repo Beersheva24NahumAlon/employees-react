@@ -39,7 +39,7 @@ const EmployeeForm: React.FC<Props> = ({ submitter }) => {
 
             <Field.Root invalid={!!errors.department}>
                 <Field.Label>Department</Field.Label>
-                <NativeSelect.Root size="sm" width={{
+                <NativeSelect.Root width={{
                     base: "80vw",
                     sm: "20vw"
                 }}>
@@ -60,8 +60,8 @@ const EmployeeForm: React.FC<Props> = ({ submitter }) => {
                     type="date"
                     placeholder="Birth date"
                     {...register("birthDate", { required: true })}
-                    min={getMinMaxDates().min}
-                    max={getMinMaxDates().max}
+                    max={getMinMaxDates().min}
+                    min={getMinMaxDates().max}
                 />
                 <Field.ErrorText>Birth date must be in range of age ({Age.min}, {Age.max})</Field.ErrorText>
             </Field.Root>
