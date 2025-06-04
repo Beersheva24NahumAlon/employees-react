@@ -20,7 +20,7 @@ function getMinMaxDates(): { min: string, max: string } {
 
 const EmployeeForm: React.FC<Props> = ({ submitter }) => {
 
-    const { register, reset, formState: { errors }, handleSubmit } = useForm<Employee>()
+    const { register, formState: { errors }, handleSubmit } = useForm<Employee>()
 
     return (
         <Box as="form" onSubmit={handleSubmit(empl => submitter({...empl, salary: +empl.salary}))}>

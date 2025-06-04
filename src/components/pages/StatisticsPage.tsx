@@ -1,6 +1,6 @@
 import React from 'react'
 import StatisticAgeTable from '../StatisticAgeTable'
-import { HStack, Spinner, Text, VStack } from '@chakra-ui/react'
+import { HStack, Spinner, VStack } from '@chakra-ui/react'
 import StatisticSalaryTable from '../StatisticSalaryTable'
 import useEmployees from '../../hooks/useEmployees'
 import StatisticAgeChart from '../StatisticAgeChart'
@@ -11,28 +11,25 @@ import apiClient from '../../services/ApiClientJsonServer'
 
 const StatisticsPage: React.FC = () => {
 
-    const { data: employees, error, isLoading } = useEmployees(() => apiClient.getAll());
+    const { data: employees, isLoading } = useEmployees(() => apiClient.getAll());
     const setEmployees = useEmployeesGlobal(s => s.setEmployees);
     setEmployees(employees || []);
     return (
         isLoading ?
             (<Spinner />) :
-            (<>{
-                error?.message ?
-                    <Text color="red">{error.message}</Text>
-                    :
-                    <HStack justifyContent="center" alignItems="baseline" gap="10rem">
-                        <VStack>
-                            <StatisticAgeTable />
-                            <StatisticAgeChart />
-                        </VStack>
-                        <VStack>
-                            <StatisticSalaryTable />
-                            <StatisticSalaryChart />
-                        </VStack>
-                    </HStack>
+            (
+                <HStack justifyContent="center" alignItems="baseline" gap="10rem">
+                    <VStack>
+                        <StatisticAgeTable />
+                        <StatisticAgeChart />
+                    </VStack>
+                    <VStack>
+                        <StatisticSalaryTable />
+                        <StatisticSalaryChart />
+                    </VStack>
+                </HStack>
 
-            }</>)
+            )
     )
 }
 

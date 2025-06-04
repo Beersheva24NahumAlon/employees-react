@@ -1,14 +1,19 @@
 import { QueryFunction, useQuery } from "@tanstack/react-query";
 import Employee from "../model/Employee";
 import { useEmployeesQuery } from "../state-management/store";
+import { AxiosError } from "axios";
 
 export default function useEmployees(queryFn: QueryFunction<Employee[]>) {
 
     const searchQuery = useEmployeesQuery(s => s.searchQuery);
 
-    return useQuery<Employee[], Error>({
+    const res = useQuery<Employee[], AxiosError>({
         queryKey: ["employees", searchQuery],
         queryFn,
         staleTime: 3600_000,
     });
+    if (res.error) {
+        throw res.error;
+    }
+    return res;
 }
