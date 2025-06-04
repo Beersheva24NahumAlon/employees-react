@@ -31,9 +31,12 @@ const EditableField: React.FC<Props> = ({ field, submitter, oldValue }) => {
     return (
         <Editable.Root defaultValue={oldValue + ""} submitMode="none" key={editableKey}>
             <Editable.Preview />
-            {field === "department" ? <Editable.Input as="select" ref={selectRef}
-                children={departments.map(d => <option value={d} key={d}>{d}</option>)}>
-            </Editable.Input> : <Editable.Input as="input" type="number" ref={inputRef} />}
+            {
+                field === "department" ?
+                    <Editable.Input as="select" ref={selectRef} children={departments.map(d => <option value={d} key={d}>{d}</option>)} />
+                    :
+                    <Editable.Input as="input" type="number" ref={inputRef} min={Salary.min} max={Salary.max}/>
+            }
             <Editable.Control>
                 <Editable.EditTrigger asChild>
                     <IconButton variant="ghost" size="xs">
