@@ -22,7 +22,7 @@ const EmployeesTable: React.FC<Props> = ({queryFn}) => {
                 error?.message ?
                     <Text color="red">{error.message}</Text>
                     :
-                    <Table.Root size="sm">
+                    <Table.Root size="sm" variant="outline">
                         <Table.Header>
                             <Table.Row>
                                 <Table.ColumnHeader></Table.ColumnHeader>
@@ -33,7 +33,7 @@ const EmployeesTable: React.FC<Props> = ({queryFn}) => {
                                 <Table.ColumnHeader></Table.ColumnHeader>
                             </Table.Row>
                         </Table.Header>
-                        <Table.Body maxHeight="75vh" overflow="auto">
+                        <Table.Body>
                             {employees?.map((empl) => (
                                 <Table.Row key={empl.id}>
                                     <Table.Cell>
@@ -47,7 +47,7 @@ const EmployeesTable: React.FC<Props> = ({queryFn}) => {
                                     <Table.Cell>{empl.department}</Table.Cell>
                                     <Table.Cell>{empl.salary}</Table.Cell>
                                     <Table.Cell>
-                                        <Button onClick={() => mutation.mutate(empl.id)}>Delete</Button>
+                                        <Button colorPalette="red" onClick={() => mutation.mutate(empl.id)}>Delete</Button>
                                     </Table.Cell>
                                 </Table.Row>
                             ))}

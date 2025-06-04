@@ -2,9 +2,8 @@ import { Button, HStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
-import { FaHome, FaSearch, FaChartPie   } from "react-icons/fa";
-import { IoPersonAddSharp } from "react-icons/io5";
 import { useEmployeesQuery } from '../state-management/store';
+import { FcHome, FcBusinessman, FcSearch, FcDoughnutChart } from "react-icons/fc";
 
 const Nav: React.FC = () => {
     const setFilterType = useEmployeesQuery(s => s.setFilterType);
@@ -12,16 +11,16 @@ const Nav: React.FC = () => {
         <HStack marginTop="2" justifyContent="left">
             <ColorModeButton />
             <Button border={0} variant="outline" size="2xl" onClick={() => setFilterType(null)}>
-                <FaHome/><Link to="/">Home page</Link>
+                <FcHome/><Link to="/">Home page</Link>
             </Button>
             <Button border={0} variant="outline" size="2xl">
-                <IoPersonAddSharp/><Link to="/add">Add employee</Link>
+                <FcBusinessman/><Link to="/add">Add employee</Link>
             </Button>
             <Button border={0} variant="outline" size="2xl">
-                <FaSearch/><Link to="/search">Search</Link>
+                <FcSearch/><Link to="/search">Search</Link>
             </Button>
             <Button border={0} variant="outline" size="2xl" onClick={() => setFilterType(null)}>
-                <FaChartPie/><Link to="/stat">Statictics</Link>
+                <FcDoughnutChart/><Link to="/stat">Statictics</Link>
             </Button>
 
         </HStack>

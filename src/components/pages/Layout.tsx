@@ -7,7 +7,7 @@ const Layout: React.FC = () => {
     return (
             <VStack>
                 <Nav />
-                <Box overflow="auto" maxHeight="90vh" width="95vw">
+                <Box overflow="auto" maxHeight="89vh" width="95vw">
                     <Outlet/>
                 </Box>
                 
