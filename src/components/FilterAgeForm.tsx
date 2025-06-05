@@ -1,15 +1,15 @@
 import { Box, Button, HStack, Slider } from '@chakra-ui/react';
 import React, { FormEvent, useRef } from 'react'
-import { useEmployeesQuery } from '../state-management/store';
+import { useEmployeesQueryStore } from '../state-management/store';
 import ranges from "../../config/ranges.json";
 
 const FilterAgeForm: React.FC = () => {
 
     const rangeElement = useRef<HTMLDivElement>(null);
 
-    const range = useEmployeesQuery(s => s.searchQuery.rangeAge);
-    const setRange = useEmployeesQuery(s => s.setRangeAge);
-    const setFilterType = useEmployeesQuery(s => s.setFilterType);
+    const range = useEmployeesQueryStore(s => s.searchQuery.rangeAge);
+    const setRange = useEmployeesQueryStore(s => s.setRangeAge);
+    const setFilterType = useEmployeesQueryStore(s => s.setFilterType);
 
     function onSubmitAge(event: FormEvent) {
         event.preventDefault();

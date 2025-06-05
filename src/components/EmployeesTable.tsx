@@ -1,6 +1,6 @@
 import React from 'react'
 import { Spinner, Table, Avatar, Button } from '@chakra-ui/react';
-import useEmployees from '../hooks/useEmployees';
+import useEmployeesQuery from '../hooks/useEmployeesQuery';
 import useEmployeesMutation from '../hooks/useEmployeesMutation';
 import apiClient from '../services/ApiClientJsonServer';
 import { QueryFunction } from '@tanstack/react-query';
@@ -13,7 +13,7 @@ interface Props {
 
 const EmployeesTable: React.FC<Props> = ({ queryFn }) => {
 
-    const { data: employees, isLoading } = useEmployees(queryFn);
+    const { data: employees, isLoading } = useEmployeesQuery(queryFn);
     const deleteMutation = useEmployeesMutation(id => apiClient.deleteEmployee(id as string));
     const mutationUpdate = useEmployeesMutation((updater) =>
         apiClient.updateEmployee(updater as { id: string, empl: Partial<Employee> }));

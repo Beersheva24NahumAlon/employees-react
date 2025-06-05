@@ -2,11 +2,11 @@ import { Button, HStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
-import { useEmployeesQuery } from '../state-management/store';
+import { useEmployeesQueryStore } from '../state-management/store';
 import { FcHome, FcBusinessman, FcSearch, FcDoughnutChart } from "react-icons/fc";
 
 const Nav: React.FC = () => {
-    const setFilterType = useEmployeesQuery(s => s.setFilterType);
+    const setFilterType = useEmployeesQueryStore(s => s.setFilterType);
     return (
         <HStack marginTop="2" justifyContent="left">
             <ColorModeButton />

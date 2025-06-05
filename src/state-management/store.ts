@@ -15,7 +15,7 @@ interface EmployeesQueryStore {
     setRangeSalary: (range: { min: number, max: number }) => void;
 }
 
-export const useEmployeesQuery = create<EmployeesQueryStore>(set => ({
+export const useEmployeesQueryStore = create<EmployeesQueryStore>(set => ({
     searchQuery: {filterType: null, 
         rangeAge: { min: ranges.Age.min, max: ranges.Age.max }, 
         rangeSalary: { min: ranges.Salary.min, max: ranges.Salary.max }

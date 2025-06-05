@@ -1,5 +1,5 @@
 import React, { FormEvent, useRef } from 'react'
-import { useEmployeesQuery } from '../state-management/store';
+import { useEmployeesQueryStore } from '../state-management/store';
 import { Box, Button, HStack, Slider } from '@chakra-ui/react';
 import ranges from "../../config/ranges.json";
 
@@ -7,9 +7,9 @@ const FilterSalaryForm: React.FC = () => {
 
     const rangeElement = useRef<HTMLDivElement>(null);
 
-    const range = useEmployeesQuery(s => s.searchQuery.rangeSalary);
-    const setRange = useEmployeesQuery(s => s.setRangeSalary);
-    const setFilterType = useEmployeesQuery(s => s.setFilterType);
+    const range = useEmployeesQueryStore(s => s.searchQuery.rangeSalary);
+    const setRange = useEmployeesQueryStore(s => s.setRangeSalary);
+    const setFilterType = useEmployeesQueryStore(s => s.setFilterType);
 
     function onSubmitSalary(event: FormEvent) {
         event.preventDefault();
