@@ -5,6 +5,7 @@ import SearchPage from "../components/pages/SearchPage";
 import StatisticsPage from "../components/pages/StatisticsPage";
 import AddEmployeePage from "../components/pages/AddEmployeePage";
 import ErrorPage from "../components/pages/ErrorPage";
+import LoginPage from "../components/pages/LoginPage";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
             { path: "search", element: <SearchPage /> },
             { path: "stat", element: <StatisticsPage /> },
             { path: "add", element: <AddEmployeePage /> },
+            { path: "login", element: <LoginPage /> },
         ]
     },
 
