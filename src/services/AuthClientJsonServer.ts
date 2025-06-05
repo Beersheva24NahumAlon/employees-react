@@ -10,7 +10,7 @@ interface ResponceLoginData {
     }
 }
 
-export default class AuthClientJsonServer implements AuthClient {
+class AuthClientJsonServer implements AuthClient {
 
     async login(loginData: LoginData): Promise<UserData | null> {
         let res: UserData | null = null;
@@ -33,5 +33,7 @@ export default class AuthClientJsonServer implements AuthClient {
     async logout(_: string): Promise<boolean> {
         return Promise.resolve(true);
     }
-
 }
+
+const authClient = new AuthClientJsonServer();
+export default authClient;

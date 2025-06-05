@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
 import { useEmployeesQueryStore } from '../state-management/store';
-import { FcHome, FcBusinessman, FcSearch, FcDoughnutChart, FcInspection } from "react-icons/fc";
+import { FcHome, FcBusinessman, FcSearch, FcDoughnutChart } from "react-icons/fc";
 
 const Nav: React.FC = () => {
     const setFilterType = useEmployeesQueryStore(s => s.setFilterType);
@@ -21,9 +21,6 @@ const Nav: React.FC = () => {
             </Button>
             <Button border={0} variant="outline" size="2xl" onClick={() => setFilterType(null)}>
                 <FcDoughnutChart/><Link to="/stat">Statictics</Link>
-            </Button>
-            <Button border={0} variant="outline" size="2xl">
-                <FcInspection /><Link to="/login">Login</Link>
             </Button>
         </HStack>
     )
