@@ -16,6 +16,7 @@ const LoginPage: React.FC = () => {
         if (res) {
             apiClient.setToken(res!.token);
             setUserData(res);
+            localStorage.setItem("token", JSON.stringify(res));
         }
         return !!res;
     }

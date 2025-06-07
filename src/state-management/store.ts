@@ -2,6 +2,7 @@ import { create } from "zustand";
 import ranges from "../../config/ranges.json";
 import Employee from "../model/Employee";
 import { UserData } from "../model/auth-data";
+import apiClient from "../services/ApiClientJsonServer";
 
 interface SearchQuery {
     filterType: "Age" | "Salary" | null;
@@ -54,8 +55,19 @@ interface UserDataStore {
     resetUserData: () => void 
 }
 
+function getToken(): UserData | null {
+    let res: UserData | null = null;
+    const json = localStorage.getItem("token");
+    if (json) {
+        res = JSON.parse(json) as UserData;
+        apiClient.setToken(res.token);
+    }
+    return res;
+
+}
+
 export const useUserDataStore = create<UserDataStore>(set => ({
-    userData: null,
+    userData: getToken(),
     setUserData: (userData) => set(() => ({userData})),
     resetUserData: () => set(() => ({userData: null}))
 }));

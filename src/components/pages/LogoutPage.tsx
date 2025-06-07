@@ -7,8 +7,14 @@ const LogoutPage:React.FC = () => {
 
     const resetUserData = useUserDataStore(s => s.resetUserData);
     const userData = useUserDataStore(s => s.userData);
+
+    function submitter() {
+        localStorage.removeItem("token");
+        resetUserData();
+    }
+    
     return (<>{
-        userData ? <Logout submitter={() => resetUserData()} /> : <Navigate to="/login"/>
+        userData ? <Logout submitter={submitter} /> : <Navigate to="/login"/>
     }</>); 
 }
 
