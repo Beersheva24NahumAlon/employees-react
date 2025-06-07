@@ -8,5 +8,5 @@ export default interface ApiClient {
     getAll(config?: { headers?: any, params?: any }): Promise<Employee[]>;
     getBySalary(minSalary: number, maxSalary: number, config?: { headers?: any, params?: any }): Promise<Employee[]>;
     getByAge(minAge: number, maxAge: number, config?: { headers?: any, params?: any }): Promise<Employee[]>;
-    addHeaderAuth(token: string): void;
+    setToken(token: string): void;
 }

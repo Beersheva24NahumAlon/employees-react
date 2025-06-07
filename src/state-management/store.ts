@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import ranges from "../../config/ranges.json";
 import Employee from "../model/Employee";
+import { UserData } from "../model/auth-data";
 
 interface SearchQuery {
     filterType: "Age" | "Salary" | null;
@@ -45,4 +46,16 @@ interface EmployeesStore {
 export const useEmployeesGlobal = create<EmployeesStore>(set => ({
     employees: [],
     setEmployees: (employees) => set(() => ({employees}))
+}));
+
+interface UserDataStore {
+    userData: UserData | null
+    setUserData: (userData: UserData) => void;
+    resetUserData: () => void 
+}
+
+export const useUserDataStore = create<UserDataStore>(set => ({
+    userData: null,
+    setUserData: (userData) => set(() => ({userData})),
+    resetUserData: () => set(() => ({userData: null}))
 }));

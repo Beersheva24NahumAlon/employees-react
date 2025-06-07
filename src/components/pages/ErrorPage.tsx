@@ -19,12 +19,10 @@ const ErrorPage: React.FC = () => {
     if (isRouteErrorResponse(error)) {
         text = `Ivalid route: ${error.data}`;
     } else {
-        text = `Unknown error`
+        text = (error as Error).message;
     }
     return (
-        <div>{
-            <Text>{text}</Text>
-        }</div>
+        <Text>{text}</Text>    
     )
 }
 
