@@ -11,7 +11,6 @@ interface Props {
 }
 
 function getMinMaxDates(): { min: string, max: string } {
-    console.log(calculateBirthDate(Age.min), calculateBirthDate(Age.max))
     return {
         min: calculateBirthDate(Age.min),
         max: calculateBirthDate(Age.max)
@@ -20,10 +19,10 @@ function getMinMaxDates(): { min: string, max: string } {
 
 const EmployeeForm: React.FC<Props> = ({ submitter }) => {
 
-    const { register, formState: { errors }, handleSubmit } = useForm<Employee>()
+    const { register, reset, formState: { errors }, handleSubmit } = useForm<Employee>()
 
     return (
-        <Box as="form" onSubmit={handleSubmit(empl => submitter({...empl, salary: +empl.salary}))}>
+        <Box as="form" onSubmit={handleSubmit(empl => {submitter({...empl, salary: +empl.salary}); reset()})}>
             <Flex flexDirection={{
             base: "column",
             sm: "row"

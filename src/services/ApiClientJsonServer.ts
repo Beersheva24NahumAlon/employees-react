@@ -15,7 +15,7 @@ class ApiClientJsonServer implements ApiClient {
     }
 
     async addEmployee(empl: Employee): Promise<Employee> {
-        return this.client.post("", empl).then(res => res.data)
+        return this.client.post("", {...empl, userId: "ADMIN"}).then(res => res.data)
     }
 
     async updateEmployee(updater: { id: string, empl: Partial<Employee> }): Promise<Employee> {
