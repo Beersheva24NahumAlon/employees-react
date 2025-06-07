@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
 import { useEmployeesQueryStore, useUserDataStore } from '../state-management/store';
-import { FcHome, FcBusinessman, FcSearch, FcDoughnutChart, FcInspection  } from "react-icons/fc";
+import { FcHome, FcBusinessman, FcSearch, FcDoughnutChart, FcInspection, FcImport } from "react-icons/fc";
 import { UserData } from '../model/auth-data';
 
 interface NavItem {
@@ -29,6 +29,8 @@ const Nav: React.FC = () => {
             onClickFn: () => setFilterType(null), renderFn: (userData) => !!userData},
         { path: "/stat", label: "Statictics", icon: <FcDoughnutChart />, 
             renderFn: (userData) => !!userData},
+        { path: "/logout", label: "Logout", icon: <FcImport />, 
+            renderFn: (userData) => !!userData },
     ];
 
     const userData = useUserDataStore(s => s.userData);

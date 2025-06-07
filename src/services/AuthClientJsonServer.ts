@@ -6,7 +6,7 @@ interface ResponceLoginData {
     accessToken: string;
     user: {
         email: string;
-        userId: string;
+        id: string;
     }
 }
 
@@ -18,7 +18,7 @@ class AuthClientJsonServer implements AuthClient {
             const response = await axios.post<ResponceLoginData>("http://localhost:3000/login/", loginData);
             res = {
                 token: response.data.accessToken,
-                role: response.data.user.userId,
+                role: response.data.user.id,
                 username: response.data.user.email
             };
         } catch (error) {

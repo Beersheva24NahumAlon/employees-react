@@ -6,6 +6,7 @@ import StatisticsPage from "../components/pages/StatisticsPage";
 import AddEmployeePage from "../components/pages/AddEmployeePage";
 import ErrorPage from "../components/pages/ErrorPage";
 import LoginPage from "../components/pages/LoginPage";
+import LogoutPage from "../components/pages/LogoutPage";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
             { path: "stat", element: <StatisticsPage /> },
             { path: "add", element: <AddEmployeePage /> },
             { path: "login", element: <LoginPage /> },
+            { path: "logout", element: <LogoutPage /> },
         ]
     },
 
